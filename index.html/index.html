@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stokofela</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('https://upload.wikimedia.org/wikipedia/commons/3/36/South_African_coins.jpg') no-repeat center center fixed;
+            background-size: cover;
+            transition: background 0.3s ease;
+            color: blue;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        h1 {
+            text-align: left;
+            color: white;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+        .dark-mode {
+            background: #0b0b0b;
+            color: white;
+        }
+        .dark-mode input, .dark-mode button {
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+        }
+        #messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: white;
+        }
+        .dark-mode #messages {
+            background: #444;
+            color: white;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .message .timestamp {
+            font-size: 0.8em;
+            color: gray;
+        }
+        .sender {
+            background: lightblue;
+            text-align: right;
+        }
+        .receiver {
+            background: lightgray;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <button onclick="toggleDarkMode()">Toggle Dark/Light Mode</button>
+    <h1>Stokofela</h1>
+    
+    <div id="auth-container">
+        <div id="login-screen">
+            <h2>Login</h2>
+            <input type="email" id="login-email" placeholder="Email">
+            <input type="password" id="login-password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p>Not registered? <span onclick="showRegister()" style="cursor:pointer; color:blue; text-decoration:underline;">Sign up</span></p>
+        </div>
+
+        <div id="register-screen" style="display:none;">
+            <h2>Register</h2>
+            <input type="email" id="register-email" placeholder="Email">
+            <input type="password" id="register-password" placeholder="Password">
+            <input type="file" id="profile-pic" accept="image/*" onchange="previewProfilePic()">
+            <img id="profile-preview" style="display:none; width: 50px; height: 50px; border-radius: 50%;">
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <span onclick="showLogin()" style="cursor:pointer; color:blue; text-decoration:underline;">Login</span></p>
+        </div>
+    </div>
+    
+    <div id="chat-container" style="display:none;">
+        <h2>Chat Room</h2>
+        <div id="profile-info"></div>
+        <div id="messages"></div>
+        <input type="text" id="chat-message" placeholder="Type a message">
+        <button onclick="sendMessage()">Send</button>
+        
+        <h2>Stokofela Calculator</h2>
+        <input type="number" id="amount" placeholder="Enter amount">
+        <button onclick="addToStokofela()">Add</button>
+        <p>Total: <span id="total">0</span></p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
